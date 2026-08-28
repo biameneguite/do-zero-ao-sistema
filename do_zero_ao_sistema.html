@@ -1,0 +1,112 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Do Zero ao Sistema</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#07101c;color:#e9f2fb;font:16px/1.7 Arial,sans-serif}header{height:64px;background:#091827;border-bottom:1px solid #1b3550;display:flex;align-items:center;padding:0 20px;position:sticky;top:0;z-index:5}header b{color:#60a5fa}.bar{margin-left:auto;width:210px;color:#91a4b8;font-size:12px}.bar div{height:7px;background:#182b40;border-radius:8px}.bar i{display:block;background:#3b82f6;height:100%;width:0}.app{display:grid;grid-template-columns:270px 1fr}aside{background:#091522;border-right:1px solid #1b3550;min-height:calc(100vh - 64px);padding:20px;position:sticky;top:64px;height:calc(100vh - 64px);overflow:auto}aside h5{color:#607994;letter-spacing:1.5px}aside button{width:100%;text-align:left;background:none;border:0;color:#a0b2c4;padding:9px;border-radius:7px;cursor:pointer}aside button:hover{background:#102238;color:white}.mod{color:#5d7895;font-size:11px;margin-top:16px;text-transform:uppercase}main{max-width:1050px;width:100%;margin:auto;padding:45px 35px}.pill{color:#60a5fa;font-size:12px;font-weight:bold;letter-spacing:1px}h1{font-size:48px;line-height:1.1;margin:15px 0}h1 span{color:#60a5fa}h2{font-size:30px}.lead{color:#9aadc0;font-size:18px;max-width:780px}.primary,.next{background:#3b82f6;color:white;border:0;border-radius:8px;padding:12px 18px;font-weight:bold;cursor:pointer}.stats{display:flex;gap:50px;margin:35px 0}.stats b{display:block;font-size:25px}.stats small{color:#91a4b8}.map{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card,.lesson{background:#0d1927;border:1px solid #1b3550;border-radius:13px;padding:20px}.card{cursor:pointer}.card:hover{border-color:#3b638a}.card small{color:#60a5fa}.card p{color:#91a4b8;font-size:14px}.lesson{margin-top:40px;padding:32px}.hidden{display:none}.lesson h3{color:#60a5fa;margin-top:28px}.lesson p,.lesson li{color:#c6d3e0}.box{background:#091d30;border-left:3px solid #3b82f6;padding:14px 17px;margin:20px 0}.code{display:block;background:#050a10;border:1px solid #20344a;border-radius:8px;padding:16px;white-space:pre-wrap;color:#dbeafe;font-family:monospace}.quiz{margin-top:30px;border-top:1px solid #1b3550;padding-top:20px}.opt{display:block;width:100%;text-align:left;background:#0a1522;color:#e9f2fb;border:1px solid #1b3550;padding:11px;border-radius:8px;margin:8px 0;cursor:pointer}.good{border-color:#34d399!important}.bad{border-color:#fb7185!important}.actions{display:flex;justify-content:space-between;margin-top:30px}.secondary{background:none;border:1px solid #1b3550;color:white;padding:10px;border-radius:8px}@media(max-width:750px){.app{display:block}aside{display:none}.map{grid-template-columns:1fr}main{padding:28px 16px}h1{font-size:38px}.stats{gap:22px;flex-wrap:wrap}.bar{width:120px}}
+</style></head><body>
+<header><b>DO ZERO AO SISTEMA</b><div class="bar"><span id="pct">0%</span><div><i id="pb"></i></div></div></header>
+<div class="app"><aside><h5>SUA TRILHA</h5><div id="menu"></div></aside><main>
+<section id="home"><div class="pill">CURSO DE PROGRAMAÇÃO • ABSOLUTO ZERO</div><h1>Entenda primeiro.<br><span>Programe depois.</span></h1><p class="lead">Um curso para quem nunca programou. Você vai aprender lógica, criar sites, entender linguagens, construir APIs, trabalhar com bancos de dados, segurança e aplicativos — até juntar tudo em um sistema.</p><button class="primary" onclick="openL(0,0)">Começar a aula 1 →</button><div class="stats"><div><b id="done">0</b><small>etapas concluídas</small></div><div><b id="count">0</b><small>etapas totais</small></div><div><b>10</b><small>módulos</small></div></div></section>
+<h2>Mapa do curso</h2><p class="lead">Faça na ordem. O curso foi pensado como uma escada.</p><div id="map" class="map"></div><article id="lesson" class="lesson hidden"></article>
+</main></div>
+<script>
+const C=[
+["01","Lógica de programação","O cérebro do programador",[
+["O que é programação?",`<p>Programar é <b>dar instruções para um computador resolver um problema</b>. O computador é extremamente rápido, mas não é “adivinhador”.</p><p>Se você disser para uma pessoa “faça um café”, ela provavelmente sabe o que significa. Para um computador, precisamos detalhar: pegar a xícara, colocar o pó, aquecer a água, colocar a água, esperar etc.</p><div class="box"><b>Algoritmo</b> é uma sequência de passos organizada para resolver um problema.</div><p>Programação começa antes do código: começa entendendo o problema.</p>`],
+["Variáveis",`<p>Imagine várias caixas. Cada caixa tem uma etiqueta e guarda uma informação.</p><pre class="code">nome = "Bia"
+idade = 28
+temCadastro = verdadeiro</pre><p>Essas caixas são uma maneira simples de imaginar <b>variáveis</b>. Um programa usa variáveis para lembrar informações.</p>`],
+["Condições",`<p>Computadores seguem regras. Uma condição permite dizer: “se isso for verdade, faça aquilo”.</p><pre class="code">SE idade >= 18
+    permitir entrada
+SENÃO
+    bloquear entrada</pre><p>Em muitas linguagens você verá isso como <b>if / else</b>.</p>`],
+["Repetições",`<p>Imagine precisar mandar 1.000 mensagens. Não queremos escrever a mesma instrução 1.000 vezes.</p><p>Usamos um <b>loop</b>: uma instrução que repete uma ação seguindo uma regra.</p><pre class="code">PARA cada pessoa da lista
+    enviar mensagem</pre>`],
+["Funções",`<p>Uma função é como uma pequena máquina. Você entrega informações, ela executa um trabalho e pode devolver um resultado.</p><pre class="code">função somar(a, b)
+    retornar a + b</pre><div class="box">Funções ajudam a dividir um problema grande em pequenas partes.</div>`],
+["Projeto — Algoritmo da vida real",`<p>Escolha algo: fazer um pedido, cadastrar um cliente ou agendar um serviço.</p><ol><li>Liste as informações necessárias.</li><li>Liste as decisões.</li><li>Liste o que precisa ser repetido.</li><li>Separe as ações em pequenas funções.</li></ol>`],
+["Prova — Fundamentos",`<p>Antes de avançar, explique com suas próprias palavras: o que é algoritmo, variável, condição, repetição e função?</p>`]
+]],
+["02","Computador e internet","O palco onde seu código funciona",[
+["CPU, RAM e armazenamento",`<p>Pense numa cozinha: a <b>CPU</b> executa o trabalho; a <b>RAM</b> é a bancada onde ficam as coisas usadas naquele momento; o armazenamento é a despensa onde os dados permanecem.</p>`],
+["Sistema operacional",`<p>Windows, Linux, macOS, Android e iOS são exemplos. O sistema operacional administra memória, arquivos, dispositivos e fornece serviços para os programas.</p>`],
+["Internet",`<p>Quando você abre um site, seu dispositivo precisa encontrar um servidor e pedir os arquivos. O <b>DNS</b> ajuda a transformar um nome como um domínio em um endereço de rede.</p><div class="box">Navegador = cliente. Servidor = máquina que recebe pedidos e responde.</div>`],
+["HTTP",`<p>HTTP é um conjunto de regras para comunicação na web.</p><ul><li>GET → buscar</li><li>POST → criar/enviar</li><li>PUT/PATCH → atualizar</li><li>DELETE → remover</li></ul><p>Status comuns: 200 sucesso, 404 não encontrado, 500 erro no servidor.</p>`]
+]],
+["03","Web: HTML, CSS e JavaScript","Sua primeira criação",[
+["HTML",`<p>HTML é a <b>estrutura</b> da página.</p><pre class="code">&lt;h1&gt;Meu site&lt;/h1&gt;
+&lt;p&gt;Olá!&lt;/p&gt;
+&lt;button&gt;Clique&lt;/button&gt;</pre>`],
+["CSS",`<p>CSS cuida da aparência e do layout.</p><pre class="code">h1 {
+  font-size: 40px;
+  margin: 20px;
+}</pre><p>Você aprenderá box model, Flexbox, Grid e responsividade.</p>`],
+["JavaScript",`<p>JavaScript adiciona comportamento.</p><pre class="code">let contador = 0;
+contador = contador + 1;</pre><p>Depois você aprenderá eventos, arrays, objetos, funções e manipulação da página.</p>`],
+["Projeto — Site interativo",`<p>Crie um site com título, seções, formulário e um botão que altere algo na tela. O objetivo é juntar HTML + CSS + JavaScript.</p>`]
+]],
+["04","Linguagens","Qual ferramenta usar?",[
+["O que é uma linguagem?",`<p>Uma linguagem de programação é uma forma estruturada de escrever instruções. A lógica continua sendo a mesma: dados, decisões, repetições e funções.</p>`],
+["JavaScript e TypeScript",`<p>JavaScript é muito usado no navegador e também no servidor. TypeScript adiciona tipagem e ajuda a organizar projetos maiores.</p>`],
+["Python",`<p>Python tem sintaxe relativamente amigável e é muito usado em automação, dados, IA e back-end.</p>`],
+["Java e C#",`<p>Java é muito presente em sistemas corporativos. C# é forte no ecossistema .NET e também em jogos.</p>`],
+["PHP, Go, Rust, C e C++",`<p>PHP tem forte presença na web; Go é usado em serviços e infraestrutura; Rust prioriza segurança de memória e desempenho; C/C++ oferecem muito controle e desempenho.</p><div class="box">Não existe uma linguagem “melhor” para tudo. Escolha de acordo com o problema.</div>`],
+["Desafio — Escolha a ferramenta",`<p>Imagine três problemas: um site, uma automação de arquivos e um sistema corporativo. Escolha uma linguagem para cada um e justifique.</p>`]
+]],
+["05","Back-end e APIs","O cérebro por trás da tela",[
+["Back-end",`<p>O back-end recebe pedidos, executa regras, conversa com banco de dados e devolve resultados.</p><p>Exemplo: clicar em “comprar” pode iniciar validação do usuário, estoque, preço, gravação do pedido e resposta.</p>`],
+["API",`<p>Uma API é uma forma organizada para sistemas conversarem.</p><pre class="code">GET /produtos
+POST /produtos
+GET /produtos/15</pre>`],
+["JSON",`<p>JSON é um formato muito comum para transportar dados.</p><pre class="code">{
+  "nome": "Bia",
+  "ativo": true
+}</pre>`],
+["Projeto — Primeira API",`<p>Planeje uma API de tarefas. Crie mentalmente rotas para listar, criar, editar e excluir tarefas. Depois defina quais dados entram e quais saem.</p>`]
+]],
+["06","Banco de dados","A memória do sistema",[
+["O que é banco de dados?",`<p>Se um sistema precisa lembrar algo amanhã, provavelmente precisa armazenar dados.</p><pre class="code">USUARIOS
+id | nome | email
+1  | Ana  | ana@email.com</pre>`],
+["Chaves e relacionamentos",`<p>Uma chave primária identifica um registro. Relacionamentos conectam dados: um usuário pode possuir muitos pedidos, por exemplo.</p>`],
+["SQL",`<p>SQL é usado para consultar e modificar bancos relacionais.</p><pre class="code">SELECT nome, email
+FROM usuarios
+WHERE ativo = true;</pre><p>Você aprenderá SELECT, INSERT, UPDATE, DELETE, JOIN e agregações.</p>`],
+["SQL x NoSQL",`<p>Bancos relacionais trabalham muito bem com dados estruturados e relacionamentos. NoSQL engloba outros modelos, como documentos. A escolha depende do problema.</p>`],
+["Projeto — Banco de um sistema",`<p>Modele usuários, serviços e agendamentos. Defina tabelas, chaves e relacionamentos antes de escrever as consultas.</p>`]
+]],
+["07","Segurança","Construa sem deixar a porta aberta",[
+["Autenticação x autorização",`<p><b>Autenticação:</b> quem é você? <b>Autorização:</b> o que você pode fazer?</p>`],
+["Senhas",`<p>Senhas não devem ser guardadas em texto puro. Sistemas usam algoritmos próprios de <b>hash de senha</b>, normalmente com salt, para reduzir riscos.</p>`],
+["SQL Injection",`<p>Dados enviados pelo usuário nunca devem ser simplesmente concatenados em SQL. Use consultas parametrizadas e validações adequadas.</p>`],
+["XSS",`<p>XSS ocorre quando conteúdo não confiável consegue ser interpretado como código no navegador. Escape/encode o conteúdo de acordo com o contexto e valide entradas.</p>`],
+["Projeto — Login seguro",`<p>Desenhe cadastro, login, logout e permissões. Pense em senhas, sessões/tokens, validação, erros e proteção de dados.</p>`]
+]],
+["08","Aplicativos","Leve o sistema para o celular",[
+["Apps nativos e multiplataforma",`<p>Apps nativos são feitos especificamente para cada plataforma. Flutter e React Native são opções populares para compartilhar grande parte do código.</p>`],
+["Telas e estado",`<p>O estado é o conjunto de informações que representa o momento atual da interface. Entender estado é essencial para apps modernos.</p>`],
+["App + API",`<p>O aplicativo normalmente conversa com uma API. A API aplica regras e acessa o banco, em vez de o app conversar diretamente com tudo.</p>`],
+["Projeto — App de tarefas",`<p>Planeje login, lista, criação, edição, exclusão e sincronização com o servidor.</p>`]
+]],
+["09","Ferramentas e engenharia","Como projetos reais são construídos",[
+["Git e GitHub",`<p>Git guarda o histórico do código. Commits registram mudanças e branches ajudam a desenvolver funcionalidades separadamente.</p>`],
+["Testes",`<p>Testes unitários verificam partes pequenas; integração verifica componentes juntos; ponta a ponta testa fluxos completos.</p>`],
+["Deploy",`<p>Deploy é colocar sua aplicação em um ambiente para outras pessoas usarem. Entram aqui servidor, banco, domínio, HTTPS e configuração.</p>`],
+["Arquitetura",`<p>Arquitetura organiza responsabilidades. Uma boa pergunta é: “se esta regra mudar amanhã, onde preciso alterar?”</p>`]
+]],
+["10","Projeto final","Do zero ao sistema",[
+["Planejamento",`<p>Escolha um problema real. Defina usuário, funcionalidades, regras e o que ficará para depois.</p>`],
+["Banco",`<p>Modele entidades e relacionamentos antes de criar tabelas.</p>`],
+["Back-end",`<p>Crie API, regras, validações, autenticação e acesso aos dados.</p>`],
+["Front-end",`<p>Crie telas e conecte cada ação à API.</p>`],
+["Segurança e testes",`<p>Revise permissões, entradas, erros, dados sensíveis e fluxos importantes.</p>`],
+["Deploy",`<p>Publique e documente como executar e usar o sistema.</p>`],
+["Prova final",`<p>Escolha um sistema e explique: problema, telas, linguagem, tabelas, API, autenticação e cuidados de segurança. Se você consegue explicar como as peças se conectam, está aprendendo a construir sistemas.</p>`]
+]]
+];
+let done=JSON.parse(localStorage.getItem("dzs")||"{}"),cur=[0,0],total=C.reduce((n,m)=>n+m[3].length,0);
+count.textContent=total;
+function render(){menu.innerHTML="";map.innerHTML="";C.forEach((m,i)=>{let g=document.createElement("div");g.className="mod";g.textContent=m[0]+" — "+m[1];menu.appendChild(g);m[3].forEach((a,j)=>{let b=document.createElement("button");b.textContent=(done[i+"-"+j]?"✓ ":"")+a[0];b.onclick=()=>openL(i,j);menu.appendChild(b)});let c=document.createElement("div");c.className="card";c.onclick=()=>openL(i,0);c.innerHTML="<small>MÓDULO "+m[0]+"</small><h3>"+m[1]+"</h3><p>"+m[2]+"</p><p>"+m[3].length+" etapas</p>";map.appendChild(c)});let n=Object.keys(done).length,p=Math.round(n/total*100);document.getElementById("done").textContent=n;document.getElementById("pct").textContent=p+"%";document.getElementById("pb").style.width=p+"%"}
+function openL(i,j){cur=[i,j];let a=C[i][3][j];lesson.innerHTML='<div class="pill">MÓDULO '+C[i][0]+' • ETAPA '+(j+1)+'</div><h2>'+a[0]+'</h2>'+a[1]+'<div class="quiz"><h3>🧪 Mini teste</h3><p>Qual é a melhor forma de aprender programação?</p><button class="opt" onclick="answer(this,false)">Decorar comandos.</button><button class="opt" onclick="answer(this,true)">Entender, praticar, errar e descobrir por quê.</button><button class="opt" onclick="answer(this,false)">Copiar sem entender.</button><p id="fb"></p></div><div class="actions"><button class="secondary" onclick="home.scrollIntoView({behavior:'smooth'})">← Início</button><button class="next" onclick="finish()">Concluir e continuar →</button></div>';lesson.classList.remove("hidden");lesson.scrollIntoView({behavior:"smooth"});render()}
+function answer(x,ok){document.querySelectorAll(".opt").forEach(b=>b.disabled=true);x.classList.add(ok?"good":"bad");fb.textContent=ok?"✓ Muito bem!":"✗ Pense novamente: programar exige prática e compreensão."}
+function finish(){done[cur[0]+"-"+cur[1]]=1;localStorage.setItem("dzs",JSON.stringify(done));let i=cur[0],j=cur[1];render();if(j+1<C[i][3].length)openL(i,j+1);else if(i+1<C.length)openL(i+1,0);else lesson.innerHTML="<h2>🏆 Parabéns!</h2><p>Você concluiu a trilha. Agora escolha uma ideia e construa seu projeto final.</p>"}
+render();
+</script></body></html>
