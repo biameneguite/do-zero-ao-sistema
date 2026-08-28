@@ -116,4 +116,7 @@ function openL(i,j){cur=[i,j];let a=C[i][3][j];document.getElementById("lesson")
 function answer(x,ok){document.querySelectorAll(".opt").forEach(b=>b.disabled=true);x.classList.add(ok?"good":"bad");document.getElementById("fb").textContent=ok?"✓ Muito bem!":"✗ Pense novamente: programar exige prática e compreensão."}
 function finish(){done[cur[0]+"-"+cur[1]]=1;localStorage.setItem("dzs",JSON.stringify(done));let i=cur[0],j=cur[1];render();if(j+1<C[i][3].length)openL(i,j+1);else if(i+1<C.length)openL(i+1,0);else document.getElementById("lesson").innerHTML="<h2>🏆 Parabéns!</h2><p>Você concluiu a trilha. Agora escolha uma ideia e construa seu projeto final.</p>"}
 render();
-</script></body></html>
+</script>
+</body>
+<script src="js/script.js"></script>
+</html>
