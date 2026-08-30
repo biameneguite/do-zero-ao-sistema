@@ -1,6 +1,7 @@
-let senha = "stich";
-if (senha === "sticth") { 
-  console.log ("Acesso Liberado!");
+let usuario = gatinho
+let senha = sómeu
+if (usuario === gatinho && senha === só meu) {
+console.log("Acesso liberado");
 } else {
-  console.log ("Acesso Negado! senha incorreta");
+  console.log("Acesso Negado");
 }
